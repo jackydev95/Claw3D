@@ -119,7 +119,19 @@ const buildEnvGatewayDefaults = (): StudioGatewaySettings | null => {
   }
 
   const fallbackProfile = profiles.hermes ?? profiles.demo ?? null;
-  if (!fallbackProfile) return null;
+  if (!fallbackProfile) {
+    if (process.env.VERCEL?.trim()) {
+      const vercelDemoUrl = `ws://localhost:${DEFAULT_LOCAL_GATEWAY_PORT}`;
+      profiles.demo = buildLocalProfile(vercelDemoUrl);
+      return buildGatewaySettings({
+        adapterType: "demo",
+        url: vercelDemoUrl,
+        token: "",
+        profiles,
+      });
+    }
+    return null;
+  }
   const fallbackAdapterType = profiles.hermes ? "hermes" : "demo";
   return buildGatewaySettings({
     adapterType: fallbackAdapterType,

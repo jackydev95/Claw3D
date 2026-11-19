@@ -10,7 +10,7 @@ export type DistrictZone = {
 };
 
 export const LOCAL_OFFICE_CANVAS_WIDTH = 1800;
-export const LOCAL_OFFICE_CANVAS_HEIGHT = 720;
+export const LOCAL_OFFICE_CANVAS_HEIGHT = 1280;
 
 export const LOCAL_OFFICE_ZONE: DistrictZone = {
   minX: 0,
@@ -22,30 +22,30 @@ export const LOCAL_OFFICE_ZONE: DistrictZone = {
 export const CITY_PATH_ZONE: DistrictZone = {
   minX: 0,
   maxX: LOCAL_OFFICE_CANVAS_WIDTH,
-  minY: 760,
-  maxY: 980,
+  minY: 1300,
+  maxY: 1380,
 };
 
 export const REMOTE_OFFICE_ZONE: DistrictZone = {
   minX: 0,
   maxX: LOCAL_OFFICE_CANVAS_WIDTH,
-  minY: 1020,
-  maxY: 1020 + LOCAL_OFFICE_CANVAS_HEIGHT,
+  minY: 1400,
+  maxY: 1780,
 };
 
 export const REMOTE_ROAM_POINTS = [
-  { x: 800, y: 1220 },
-  { x: 850, y: 1520 },
-  { x: 820, y: 1600 },
-  { x: 450, y: 1440 },
-  { x: 250, y: 1440 },
-  { x: 650, y: 1440 },
-  { x: 150, y: 1640 },
+  { x: 800, y: 1500 },
+  { x: 850, y: 1620 },
+  { x: 820, y: 1700 },
+  { x: 450, y: 1580 },
+  { x: 250, y: 1580 },
+  { x: 650, y: 1580 },
+  { x: 150, y: 1720 },
 ] as const;
 
-export const DISTRICT_CAMERA_POSITION: [number, number, number] = [14, 16, 18];
-export const DISTRICT_CAMERA_TARGET: [number, number, number] = [0, 0, 1];
-export const DISTRICT_CAMERA_ZOOM = 34;
+export const DISTRICT_CAMERA_POSITION: [number, number, number] = [15, 19, 19];
+export const DISTRICT_CAMERA_TARGET: [number, number, number] = [0, 0, -1.5];
+export const DISTRICT_CAMERA_ZOOM = 30;
 
 export const isRemoteOfficeAgentId = (agentId: string) => agentId.startsWith("remote:");
 

@@ -1349,7 +1349,14 @@ export function OfficeScreen({
     voiceId: voiceRepliesPreference.voiceId,
     speed: voiceRepliesPreference.speed,
   });
-  const showOnboardingWizard = showOnboarding || forceShowOnboarding;
+  const showOnboardingWizard =
+    forceShowOnboarding ||
+    (showOnboarding &&
+      !(activeAdapterType === "demo" && (status === "connected" || status === "connecting")));
+  const resolvedOfficeTitle =
+    activeAdapterType === "demo" && officeTitle === "Luke Headquarters"
+      ? "Tech Company HQ (45 Nhân Sự)"
+      : officeTitle;
   const handleOpenOnboarding = useCallback(() => {
     resetOnboarding();
     setCompanyCreatedSignal(0);
@@ -4737,7 +4744,7 @@ export function OfficeScreen({
           githubSkill={githubSkill}
           taskManagerEnabled={taskManagerReady}
           soundclawEnabled={soundclawReady}
-          officeTitle={officeTitle}
+          officeTitle={resolvedOfficeTitle}
           officeTitleLoaded={officeTitleLoaded}
           remoteOfficeEnabled={remoteOfficeEnabled}
           remoteOfficeSourceKind={remoteOfficeSourceKind}

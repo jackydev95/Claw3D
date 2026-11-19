@@ -47,12 +47,20 @@ export const resolvePingPongTargets = (
 
 export const ROAM_POINTS = [
   { x: 800, y: 200 },
-  { x: 850, y: 500 },
-  { x: 820, y: 580 },
-  { x: 450, y: 420 },
-  { x: 250, y: 420 },
-  { x: 650, y: 420 },
-  { x: 150, y: 620 },
+  { x: 880, y: 390 },
+  { x: 880, y: 540 },
+  { x: 450, y: 390 },
+  { x: 250, y: 390 },
+  { x: 650, y: 540 },
+  { x: 900, y: 730 },
+  { x: 420, y: 880 },
+  { x: 900, y: 880 },
+  { x: 1320, y: 880 },
+  { x: 380, y: 1030 },
+  { x: 880, y: 1030 },
+  { x: 1300, y: 1030 },
+  { x: 780, y: 1200 },
+  { x: 1580, y: 920 },
 ];
 
 export const JANITOR_ENTRY_POINTS: FacingPoint[] = [
@@ -62,9 +70,9 @@ export const JANITOR_ENTRY_POINTS: FacingPoint[] = [
 ];
 
 export const JANITOR_EXIT_POINTS: FacingPoint[] = [
-  { x: 110, y: 680, facing: Math.PI / 2 },
-  { x: 820, y: 680, facing: Math.PI },
-  { x: 1510, y: 680, facing: -Math.PI / 2 },
+  { x: 110, y: 1220, facing: Math.PI / 2 },
+  { x: 880, y: 1220, facing: Math.PI },
+  { x: 1580, y: 1220, facing: -Math.PI / 2 },
 ];
 
 const GRID_CELL = 25;

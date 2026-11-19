@@ -1,6 +1,6 @@
 export const DESK_STICKY_MS = 10_000;
 export const SNAP_GRID = 10;
-export const STORAGE_KEY = "openclaw-office-furniture-v9";
+export const STORAGE_KEY = "openclaw-office-furniture-v10";
 export const ATM_MIGRATION_KEY = "openclaw-office-atm-migration-v1";
 export const SERVER_ROOM_MIGRATION_KEY =
   "openclaw-office-server-room-migration-v3";

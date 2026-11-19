@@ -2634,7 +2634,7 @@ export function RetroOffice3D({
   const cameraTarget = remoteOfficeEnabled
     ? DISTRICT_CAMERA_TARGET
     : LOCAL_CAMERA_TARGET;
-  const cameraZoom = remoteOfficeEnabled ? DISTRICT_CAMERA_ZOOM : 56;
+  const cameraZoom = remoteOfficeEnabled ? DISTRICT_CAMERA_ZOOM : 38;
   const overviewPreset = useMemo(
     () => ({ pos: CAM_POS, target: cameraTarget, zoom: cameraZoom }),
     [CAM_POS, cameraTarget, cameraZoom]
@@ -2771,13 +2771,30 @@ export function RetroOffice3D({
   const deskLocations = useMemo(() => getDeskLocations(furniture), [furniture]);
   const assignedDeskIndexByAgentId = useMemo(() => {
     const next: Record<string, number> = {};
+    const usedDeskIndices = new Set<number>();
     deskItems.forEach((item, index) => {
       const agentId = deskAssignmentByDeskUid[item._uid];
       if (!agentId) return;
       next[agentId] = index;
+      usedDeskIndices.add(index);
     });
+    let fallbackCursor = 0;
+    for (const agent of agents) {
+      if (agent.id.startsWith("remote:") || next[agent.id] !== undefined) {
+        continue;
+      }
+      while (fallbackCursor < deskItems.length && usedDeskIndices.has(fallbackCursor)) {
+        fallbackCursor += 1;
+      }
+      if (fallbackCursor >= deskItems.length) {
+        break;
+      }
+      next[agent.id] = fallbackCursor;
+      usedDeskIndices.add(fallbackCursor);
+      fallbackCursor += 1;
+    }
     return next;
-  }, [deskAssignmentByDeskUid, deskItems]);
+  }, [agents, deskAssignmentByDeskUid, deskItems]);
   const janitorCleaningStops = useMemo(
     () => getJanitorCleaningStops(furniture),
     [furniture],
